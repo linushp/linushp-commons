@@ -329,4 +329,43 @@ public class CollectionUtils {
         }
         return result;
     }
+
+
+    public static <T> Map<String, T> toMap(List<T> extendEntities, String fieldName) throws Exception {
+        Map<String, T> map = new HashMap<>();
+        if (CollectionUtils.isEmpty(extendEntities)) {
+            return map;
+        }
+        for (T t : extendEntities) {
+            ReflectObject reflectObject = new ReflectObject(t);
+            Object fieldValue = reflectObject.getFieldValue(fieldName);
+            if (fieldValue != null) {
+                map.put(fieldValue.toString(), t);
+            }
+        }
+        return map;
+    }
+
+    public static <T> Map<String, List<T>> toMapList(List<T> objectList, String fieldName) throws Exception {
+        Map<String, List<T>> map = new HashMap<>();
+        if (CollectionUtils.isEmpty(objectList)) {
+            return map;
+        }
+
+        for (T t : objectList) {
+            ReflectObject reflectObject = new ReflectObject(t);
+            Object fieldValue = reflectObject.getFieldValue(fieldName);
+            if (fieldValue != null) {
+                String mapKey = fieldValue.toString();
+                List<T> keyList = map.get(mapKey);
+                if (keyList == null) {
+                    keyList = new ArrayList<>();
+                    map.put(mapKey, keyList);
+                }
+                keyList.add(t);
+            }
+        }
+        return map;
+    }
+
 }
