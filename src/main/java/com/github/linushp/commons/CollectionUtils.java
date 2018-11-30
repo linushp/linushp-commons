@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.*;
 
 public class CollectionUtils {
@@ -367,5 +369,68 @@ public class CollectionUtils {
         }
         return map;
     }
+
+
+    public static List<Integer> toIntegerList(String[] strArr) {
+
+        List<Integer> numberList = new ArrayList<>();
+
+        for (String obj : strArr) {
+            if (!StringUtils.isBlank(obj)) {
+                int opInt = Integer.parseInt(obj);
+                numberList.add(opInt);
+            }
+        }
+
+        return numberList;
+    }
+
+
+    public static List<Long> toLongList(String[] strArr) {
+
+        List<Long> numberList = new ArrayList<>();
+
+        for (String obj : strArr) {
+            if (!StringUtils.isBlank(obj)) {
+                Long opInt = Long.parseLong(obj);
+                numberList.add(opInt);
+            }
+        }
+
+        return numberList;
+    }
+
+
+    public static List<BigDecimal> toBigDecimalList(String[] strArr) {
+
+        List<BigDecimal> numberList = new ArrayList<>();
+
+        for (String obj : strArr) {
+            if (!StringUtils.isBlank(obj)) {
+                BigDecimal opInt = new BigDecimal(obj);
+                numberList.add(opInt);
+            }
+        }
+
+        return numberList;
+    }
+
+
+    public static List<BigInteger> toBigIntegerList(String[] strArr) {
+
+        List<BigInteger> numberList = new ArrayList<>();
+
+        for (String obj : strArr) {
+            if (!StringUtils.isBlank(obj)) {
+                BigInteger opInt = new BigInteger(obj);
+                numberList.add(opInt);
+            }
+        }
+
+        return numberList;
+    }
+
+
+
 
 }
