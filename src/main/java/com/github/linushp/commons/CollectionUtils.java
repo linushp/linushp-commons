@@ -431,6 +431,40 @@ public class CollectionUtils {
     }
 
 
+    /**
+     * 移除list中的空字符串
+     */
+    public static List<String> removeBlankString(List<String> stringList) {
+        if (stringList == null) {
+            return new ArrayList<>();
+        }
+        List<String> result = new ArrayList<>();
+        for (String str : stringList) {
+            if (!StringUtils.isBlank(str)) {
+                result.add(str);
+            }
+        }
+        return result;
+    }
+
+
+    /**
+     * 移除list中的空字符串
+     */
+    public static List<String> removeEmptyString(List<String> stringList) {
+        if (stringList == null) {
+            return new ArrayList<>();
+        }
+        List<String> result = new ArrayList<>();
+        for (String str : stringList) {
+            if (!StringUtils.isEmpty(str)) {
+                result.add(str);
+            }
+        }
+        return result;
+    }
+
+
 
 
 }
