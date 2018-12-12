@@ -466,5 +466,76 @@ public class CollectionUtils {
 
 
 
+    public static ArrayList<String> toStringList(Collection collection) {
+        if (collection == null || collection.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        ArrayList<String> result = new ArrayList<>();
+        for (Object obj : collection) {
+            if (obj != null) {
+                result.add(obj.toString());
+            }
+        }
+        return result;
+    }
+
+
+
+    public static ArrayList<Integer> toIntegerList(Collection collection) {
+        if (collection == null || collection.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        ArrayList<Integer> result = new ArrayList<>();
+        for (Object obj : collection) {
+            if (obj != null) {
+                Integer sss = CastBasicTypeUtils.toInteger(obj);
+                result.add(sss);
+            }
+        }
+        return result;
+    }
+
+
+
+    public static ArrayList<Long> toLongList(Collection collection) {
+        if (collection == null || collection.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        ArrayList<Long> result = new ArrayList<>();
+        for (Object obj : collection) {
+            if (obj != null) {
+                Long sss = CastBasicTypeUtils.toLong(obj);
+                result.add(sss);
+            }
+        }
+        return result;
+    }
+
+
+
+
+    public static HashSet<String> toStringHashSet(Collection collection) {
+        return new HashSet<>(toStringList(collection));
+    }
+
+
+    public static HashSet<Integer> toIntegerHashSet(Collection collection) {
+        return new HashSet<>(toIntegerList(collection));
+    }
+
+
+    public static HashSet<Long> toLongHashSet(Collection collection) {
+        return new HashSet<>(toLongList(collection));
+    }
+
+
+
+
+
+
+
 
 }
