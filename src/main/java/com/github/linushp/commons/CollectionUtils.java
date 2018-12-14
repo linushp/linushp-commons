@@ -532,7 +532,26 @@ public class CollectionUtils {
     }
 
 
+    /**
+     * 乱序
+     */
+    public static <T> List<T> shuffleList(Collection<T> xxxxx) {
+        ArrayList<T> _array = new ArrayList<>(xxxxx);
 
+        Random random_xxx = new Random(System.currentTimeMillis());
+
+        for (int aaa = 0 ; aaa < 2; aaa ++) {
+            for (int i = _array.size() - 1; i >= 0; i--) {
+                int j = random_xxx.nextInt(_array.size() - 1);
+                if (i != j) {
+                    T temp = _array.get(i);
+                    _array.set(i, _array.get(j));
+                    _array.set(j, temp);
+                }
+            }
+        }
+        return _array;
+    }
 
 
 
