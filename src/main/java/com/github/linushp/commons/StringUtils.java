@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -107,6 +108,23 @@ public class StringUtils {
         matcher.appendTail(sb);
         return sb.toString();
     }
+
+
+
+    public static final Map<String, String> camel2UnderlineCache = new ConcurrentHashMap<>();
+    public static String camel2Underline(String str, boolean isCache) {
+        if (isCache) {
+            String result = camel2UnderlineCache.get(str);
+            if (result == null) {
+                result = camel2Underline(str);
+                camel2UnderlineCache.put(str, result);
+            }
+            return result;
+        }
+        return camel2Underline(str);
+    }
+
+
 
     public static String appendIfNotEnd(String path, String s) {
         if (path.endsWith(s)) {
