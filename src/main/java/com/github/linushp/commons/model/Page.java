@@ -1,5 +1,6 @@
 package com.github.linushp.commons.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Page<T> {
@@ -24,6 +25,12 @@ public class Page<T> {
         }
 
     }
+
+
+    public static <S> Page<S> emptyPage(){
+        return new Page<S>(new ArrayList(),0,0,0);
+    }
+
 
 
     public List<T> getItems() {
