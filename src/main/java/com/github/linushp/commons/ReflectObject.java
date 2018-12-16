@@ -40,6 +40,15 @@ public class ReflectObject {
     }
 
 
+    public Object getFieldValueLoose(String fieldName) throws Exception {
+        BeanField beanField = getBeanFieldLoose(fieldName);
+        if (beanField == null) {
+            return null;
+        }
+        return beanField.getBeanValue(this.object);
+    }
+
+
     public void invokeSetter(String setter_name, Object value) throws Exception {
         invokeMethod(setter_name, value);
     }
@@ -96,6 +105,30 @@ public class ReflectObject {
                 return beanField;
             }
         }
+        return null;
+    }
+
+
+    private BeanField getBeanFieldLoose(String fieldName) {
+        BeanField beanField = getBeanField(fieldName);
+        if (beanField!=null){
+            return beanField;
+        }
+
+        fieldName = StringUtils.camel2Underline(fieldName,true);
+
+        beanField = getBeanField(fieldName);
+        if (beanField!=null){
+            return beanField;
+        }
+
+
+        fieldName = StringUtils.underline2Camel(fieldName,true);
+        beanField = getBeanField(fieldName);
+        if (beanField!=null){
+            return beanField;
+        }
+
         return null;
     }
 

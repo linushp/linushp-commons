@@ -14,6 +14,7 @@ public class StringUtils {
     public static boolean isEmpty(String str) {
         return str == null || str.isEmpty();
     }
+
     public static boolean isNotEmpty(String str) {
         return !isEmpty(str);
     }
@@ -110,8 +111,8 @@ public class StringUtils {
     }
 
 
-
     public static final Map<String, String> camel2UnderlineCache = new ConcurrentHashMap<>();
+
     public static String camel2Underline(String str, boolean isCache) {
         if (isCache) {
             String result = camel2UnderlineCache.get(str);
@@ -123,7 +124,6 @@ public class StringUtils {
         }
         return camel2Underline(str);
     }
-
 
 
     public static String appendIfNotEnd(String path, String s) {
@@ -176,8 +176,6 @@ public class StringUtils {
     }
 
 
-
-
     public static boolean isIntegerNumeric(String str) {
         if (isEmpty(str)) {
             return false;
@@ -193,37 +191,83 @@ public class StringUtils {
     }
 
 
-
-    public static String ignoreSuffix(String str, String suffix){
-        if (isEmpty(str)){
+    public static String ignoreSuffix(String str, String suffix) {
+        if (isEmpty(str)) {
             return str;
         }
 
-        if (str.endsWith(suffix)){
+        if (str.endsWith(suffix)) {
             int endIndex = str.length() - suffix.length();
-            return str.substring(0,endIndex);
+            return str.substring(0, endIndex);
         }
         return str;
     }
 
-    public static String ignorePrefix(String str, String prefix){
-        if (isEmpty(str)){
+    public static String ignorePrefix(String str, String prefix) {
+        if (isEmpty(str)) {
             return str;
         }
 
-        if (str.startsWith(prefix)){
+        if (str.startsWith(prefix)) {
             int endIndex = str.length();
             int startIndex = prefix.length();
-            return str.substring(startIndex,endIndex);
+            return str.substring(startIndex, endIndex);
         }
         return str;
     }
 
 
-//    public static void main(String [] args){
-//        String ss = ignorePrefix("123.html","123.htm");
-//        System.out.println(ss);
-//    }
+    /**
+     * 下划线转驼峰
+     */
+    public static String underline2Camel(String str) {
+        if (str == null) {
+            return str;
+        }
+
+        str = str.trim();
+        int strLength = str.length();
+        if (strLength == 0) {
+            return "";
+        }
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        int i = 0;
+        while (i < strLength) {
+            char charAtIndex = str.charAt(i);
+            if (charAtIndex != '_') {
+                int beforeChatIndex = i - 1;
+
+                //小写字母，并且前面有下划线
+                if (beforeChatIndex >= 0 && str.charAt(beforeChatIndex) == '_' && charAtIndex >= 'a' && charAtIndex <= 'z') {
+                    charAtIndex = (char) (charAtIndex - 32);
+                }
+                stringBuilder.append(charAtIndex);
+            }
+            i++;
+        }
+        return stringBuilder.toString();
+    }
+
+
+    public static final Map<String, String> underline2CamelCache = new ConcurrentHashMap<>();
+
+
+    /**
+     * 下划线转驼峰
+     */
+    public static String underline2Camel(String str, boolean isCache) {
+        if (isCache) {
+            String result = underline2CamelCache.get(str);
+            if (result == null) {
+                result = underline2Camel(str);
+                underline2CamelCache.put(str, result);
+            }
+            return result;
+        }
+        return underline2Camel(str);
+    }
 
 
 }
