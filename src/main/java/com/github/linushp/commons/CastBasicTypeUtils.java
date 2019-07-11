@@ -134,7 +134,7 @@ public class CastBasicTypeUtils {
             return (Short) value;
         }
 
-        return Short.valueOf(ignoreDotAfter(getStringValue(value)));
+        return Short.valueOf(toStringTrimIgnoreDotAfter(value));
     }
 
 
@@ -147,7 +147,7 @@ public class CastBasicTypeUtils {
             return (Integer) value;
         }
 
-        return Integer.valueOf(ignoreDotAfter(getStringValue(value)));
+        return Integer.valueOf(toStringTrimIgnoreDotAfter(value));
     }
 
 
@@ -160,7 +160,7 @@ public class CastBasicTypeUtils {
             return (Long) value;
         }
 
-        return Long.valueOf(ignoreDotAfter(getStringValue(value)));
+        return Long.valueOf(toStringTrimIgnoreDotAfter(value));
     }
 
 
@@ -179,7 +179,7 @@ public class CastBasicTypeUtils {
             return (byte) intValue;
         }
 
-        return Byte.valueOf(ignoreDotAfter(getStringValue(value)));
+        return Byte.valueOf(toStringTrimIgnoreDotAfter(value));
     }
 
 
@@ -209,7 +209,7 @@ public class CastBasicTypeUtils {
         if (value instanceof Float) {
             return (Float) value;
         }
-        return Float.valueOf(getStringValue(value));
+        return Float.valueOf(getStringValue(value).trim());
     }
 
     public static Double toDouble(Object value) {
@@ -221,7 +221,7 @@ public class CastBasicTypeUtils {
             return (Double) value;
         }
 
-        return Double.valueOf(getStringValue(value));
+        return Double.valueOf(getStringValue(value).trim());
     }
 
     public static Boolean toBoolean(Object value) {
@@ -261,7 +261,7 @@ public class CastBasicTypeUtils {
             return (BigInteger) value;
         }
 
-        return new BigInteger(ignoreDotAfter(getStringValue(value)));
+        return new BigInteger(toStringTrimIgnoreDotAfter(value));
     }
 
     public static BigDecimal toBigDecimal(Object value) {
@@ -273,7 +273,7 @@ public class CastBasicTypeUtils {
             return (BigDecimal) value;
         }
 
-        return new BigDecimal(getStringValue(value));
+        return new BigDecimal(getStringValue(value).trim());
     }
 
 
@@ -295,6 +295,16 @@ public class CastBasicTypeUtils {
         long longDate = toLong(value);
         Timestamp timestamp = new Timestamp(longDate);
         return timestamp;
+    }
+
+
+
+    public static String toStringTrimIgnoreDotAfter(Object value){
+        if(value ==null){
+            return null;
+        }
+        String stringValue = value.toString().trim();
+        return ignoreDotAfter(stringValue);
     }
 
 
