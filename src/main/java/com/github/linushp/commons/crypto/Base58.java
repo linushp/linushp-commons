@@ -1,4 +1,4 @@
-package com.github.linushp.commons.utils;
+package com.github.linushp.commons.crypto;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;

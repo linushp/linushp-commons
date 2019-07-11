@@ -1,4 +1,4 @@
-package com.github.linushp.commons.utils;
+package com.github.linushp.commons.crypto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
