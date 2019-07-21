@@ -1,10 +1,10 @@
 package com.github.linushp.commons;
 
 
+import com.alibaba.fastjson.JSON;
+
 import java.net.URL;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -267,6 +267,14 @@ public class StringUtils {
             return result;
         }
         return underline2Camel(str);
+    }
+
+
+    public static String trimString(Object obj){
+        if (obj == null){
+            return "";
+        }
+        return obj.toString().trim();
     }
 
 

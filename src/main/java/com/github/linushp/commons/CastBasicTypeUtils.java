@@ -43,7 +43,7 @@ public class CastBasicTypeUtils {
         if (collection == null) {
             return null;
         }
-        Collection array_result = targetClazz.newInstance();
+        Collection array_result = targetClazz.getDeclaredConstructor().newInstance();
         for (Object obj : collection) {
             Object obj2 = obj;
             if (elementType != null) {
